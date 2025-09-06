@@ -1,0 +1,14 @@
+- question: What is the tuition for the AI Engineering Bootcamp?
+  answer: The tuition is $4,000 for the full program. We offer payment plans and scholarships for eligible applicants.
+- question: Do I need prior coding experience?
+  answer: Basic Python knowledge is recommended. We provide prep materials if you are new to Python.
+- question: Is there a job guarantee?
+  answer: While we cannot guarantee jobs, we provide career support, interview prep, and referrals to partner companies.
+- question: What is the program duration and schedule?
+  answer: The program runs for 12 weeks, part-time friendly with live sessions and async work.
+- question: Do you offer financing options?
+  answer: Yes. We offer installment plans and can connect you with financing partners in select regions.
+- question: Is the program remote?
+  answer: Yes, the program is fully remote with global cohorts and live mentorship.
+- question: What tools and topics are covered?
+  answer: LLM workflows, RAG systems, prompt engineering, LangChain, vector databases, data pipelines, and deployment practices.

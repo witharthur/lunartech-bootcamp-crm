@@ -1,0 +1,17 @@
+{
+  "name": "lunartech-crm-proto",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node server/dev.js",
+    "start": "node server/dev.js",
+    "build": "echo \"No build step; dev server bundles on the fly with esbuild.\""
+  },
+  "dependencies": {
+    "esbuild": "^0.21.5",
+    "express": "^4.19.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "yaml": "^2.4.2"
+  }
+}
