@@ -8,9 +8,13 @@ const PORT = process.env.PORT ? Number(process.env.PORT) : 5173;
 const ROOT = path.join(__dirname, "..");
 
 const app = express();
+<<<<<<< HEAD
 app.set("trust proxy", 1);
 app.use(express.json());
 app.use(require('cookie-parser')());
+=======
+app.use(express.json());
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
 
 // Load FAQ knowledge base (YAML)
 let FAQ_ENTRIES = [];
@@ -22,6 +26,7 @@ try {
   console.warn("[dev] Could not load data/faq.yml:", e.message);
 }
 
+<<<<<<< HEAD
 // Retrieval helpers: prefer OpenAI embeddings when available, fall back to token overlap
 const FAQ_EMBEDDINGS = []; // parallel to FAQ_ENTRIES; each is an array of numbers
 
@@ -55,6 +60,11 @@ function cosineSimVec(a, b) {
 // Simple token overlap fallback
 function tokenize(text) {
   return String(text).toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(Boolean);
+=======
+// Simple retrieval helpers
+function tokenize(text) {
+  return String(text).toLowerCase().replace(/[^a-z0-9\s]/g, " ").split(/\s+/).filter(Boolean);
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
 }
 function vectorize(text) {
   const tokens = tokenize(text);
@@ -69,6 +79,7 @@ function cosineSim(a, b) {
   if (aMag === 0 || bMag === 0) return 0;
   return dot / (Math.sqrt(aMag) * Math.sqrt(bMag));
 }
+<<<<<<< HEAD
 
 function retrieve(question, k = 1) {
   // Prefer embeddings if available and lengths match
@@ -83,6 +94,9 @@ function retrieve(question, k = 1) {
   }
 
   // Fallback token overlap
+=======
+function retrieve(question, k = 1) {
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
   const qv = vectorize(question);
   const scored = FAQ_ENTRIES.map((entry, idx) => {
     const text = `${entry.question} ${entry.answer}`;
@@ -92,6 +106,7 @@ function retrieve(question, k = 1) {
   return scored.slice(0, k);
 }
 
+<<<<<<< HEAD
 // Background indexing: compute embeddings for all FAQ entries asynchronously
 async function indexFAQ() {
   const key = process.env.OPENAI_API_KEY;
@@ -120,11 +135,14 @@ async function indexFAQ() {
 // Kick off indexing without blocking startup
 indexFAQ().catch(() => {});
 
+=======
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
 // API: list FAQ question suggestions
 app.get("/api/faq", (_req, res) => {
   res.json(Array.isArray(FAQ_ENTRIES) ? FAQ_ENTRIES.map((e) => e.question) : []);
 });
 
+<<<<<<< HEAD
 // API: ask — use OpenAI with top-3 FAQ context (RAG). Model will be instructed to ONLY answer from the FAQ context and escalate if unsure.
 app.post("/api/ask", async (req, res) => {
   const start = Date.now();
@@ -209,6 +227,30 @@ app.post("/api/ask", async (req, res) => {
     const userMsg = `FAQ context:\n${context}\n\nQuestion: ${question}`;
 
     console.log(`[dev] /api/ask calling OpenAI (question length ${question.length})`);
+=======
+// API: ask with optional OpenAI fallback if confidence low
+app.post("/api/ask", async (req, res) => {
+  const question = String((req.body && req.body.question) || "").trim();
+  if (!question) return res.status(400).json({ error: "question required" });
+  const best = retrieve(question, 1)[0];
+  const confidence = best ? Math.max(0, Math.min(1, best.sim)) : 0;
+  const threshold = 0.35;
+  const escalated = confidence < threshold;
+
+  if (!best) return res.json({ answer: "I'm not sure. An admissions specialist will follow up.", confidence, escalated: true, source: null });
+
+  if (!escalated) {
+    return res.json({ answer: best.entry.answer, confidence, escalated: false, source: { question: best.entry.question } });
+  }
+
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    return res.json({ answer: "I'm not fully confident. We've logged your question for follow-up.", confidence, escalated: true, source: { question: best.entry.question } });
+  }
+
+  try {
+    const context = retrieve(question, 3).map((r, i) => `${i + 1}. Q: ${r.entry.question}\nA: ${r.entry.answer}`).join("\n\n");
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -218,6 +260,7 @@ app.post("/api/ask", async (req, res) => {
       body: JSON.stringify({
         model: "gpt-4o-mini",
         messages: [
+<<<<<<< HEAD
           { role: "system", content: system },
           { role: "user", content: userMsg }
         ],
@@ -269,6 +312,19 @@ app.post("/api/checkout", async (req, res) => {
     return res.json({ url: j.url });
   } catch (e) {
     return res.status(500).json({ error: "checkout_failed" });
+=======
+          { role: "system", content: "You are an admissions assistant. Answer only using the provided FAQ context. If unknown, say you are not sure and escalate politely." },
+          { role: "user", content: `FAQ context:\n${context}\n\nQuestion: ${question}` },
+        ],
+        temperature: 0.2,
+      }),
+    });
+    const json = await response.json();
+    const text = json.choices?.[0]?.message?.content?.trim() || "I'm not fully confident. We've logged your question for follow-up.";
+    return res.json({ answer: text, confidence, escalated: true, source: { question: best.entry.question } });
+  } catch (e) {
+    return res.json({ answer: "I'm not fully confident. We've logged your question for follow-up.", confidence, escalated: true, source: { question: best.entry.question } });
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
   }
 });
 
@@ -276,6 +332,7 @@ app.post("/api/checkout", async (req, res) => {
 app.use("/src", express.static(path.join(ROOT, "src")));
 app.use("/data", express.static(path.join(ROOT, "data")));
 
+<<<<<<< HEAD
 // DB-backed API routes (optional, used when DATABASE_URL provided and Prisma installed)
 try {
   const dbApi = require('./api-db');
@@ -325,6 +382,8 @@ app.get("/api/cal/config", async (_req, res) => {
   }
 });
 
+=======
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
 // Simple HTML shell served dynamically (not written to disk)
 app.get(["/", "/index.html"], (_req, res) => {
   const html = `<!doctype html>

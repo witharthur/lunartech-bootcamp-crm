@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 AI-Powered Bootcamp Applicant CRM
 Full-stack CRM managing bootcamp applications with AI-powered Q&A and automated workflows.
 Features
@@ -71,3 +72,7 @@ Backend: Node.js + Express
 Database: PostgreSQL
 AI: OpenAI API (RAG)
 Payment: Stripe (test mode)
+=======
+# lunartech
+This repository initialized.
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff

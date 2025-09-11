@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 import React, { useEffect, useState, useRef } from "react";
+=======
+import React, { useEffect, useState } from "react";
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
 import { getLeadById, scheduleOnboarding } from "../api/mockBackend";
 import { getCurrentLeadId } from "../lib/session";
 
 export default function SchedulePage({ navigate }) {
   const [lead, setLead] = useState(null);
   const [value, setValue] = useState("");
+<<<<<<< HEAD
   const [calLink, setCalLink] = useState("");
   const embedLoaded = useRef(false);
+=======
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
 
   useEffect(() => {
     const id = getCurrentLeadId();
@@ -14,6 +21,7 @@ export default function SchedulePage({ navigate }) {
     setLead(l || null);
   }, []);
 
+<<<<<<< HEAD
   useEffect(() => {
     fetch("/api/cal/config").then(r=>r.json()).then(j=>setCalLink(j?.link || ""));
   }, []);
@@ -37,6 +45,8 @@ export default function SchedulePage({ navigate }) {
     return () => window.removeEventListener("message", onMsg);
   }, [calLink, lead, navigate]);
 
+=======
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
   function doSchedule() {
     if (!lead || !value) return;
     try {
@@ -55,6 +65,7 @@ export default function SchedulePage({ navigate }) {
       <div className="content-grid">
         <div className="panel-card shadow-lg">
           <h3 className="panel-title">Select time</h3>
+<<<<<<< HEAD
           {calLink ? (
             <div className="cal-embed-container">
               <div
@@ -69,6 +80,12 @@ export default function SchedulePage({ navigate }) {
               <button className="btn-primary" onClick={doSchedule}>Schedule</button>
             </div>
           )}
+=======
+          <div className="schedule-input">
+            <input type="datetime-local" value={value} onChange={(e)=>setValue(e.target.value)} />
+            <button className="btn-primary" onClick={doSchedule}>Schedule</button>
+          </div>
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
         </div>
       </div>
     </div>

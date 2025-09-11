@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useMemo, useState } from 'react';
 import {
   advanceToReady,
@@ -70,6 +71,46 @@ export default function AdminDashboard({ version = 0 }) {
     }),
     {}
   );
+=======
+import React, { useMemo, useState } from "react";
+import { STAGES } from "../lib/pipeline";
+import {
+  getLeads,
+  advanceToReady,
+  proceedToPayment,
+  scheduleOnboarding,
+  sessionSummary,
+} from "../api/mockBackend";
+
+export default function AdminDashboard() {
+  const [tick, setTick] = useState(0);
+  const leads = useMemo(() => getLeads(), [tick]);
+
+  function refresh() {
+    setTick((t) => t + 1);
+  }
+
+  function handleReady(id) {
+    advanceToReady(id);
+    refresh();
+  }
+
+  function handlePay(id) {
+    proceedToPayment(id);
+    refresh();
+  }
+
+  function handleSchedule(id, dt) {
+    try {
+      scheduleOnboarding(id, dt);
+      refresh();
+    } catch (e) {
+      alert(e.message);
+    }
+  }
+
+  const counts = STAGES.reduce((acc, s) => ({ ...acc, [s]: leads.filter((l) => l.stage === s).length }), {});
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
 
   return (
     <div className="admin-dashboard">
@@ -79,9 +120,13 @@ export default function AdminDashboard({ version = 0 }) {
             <strong>{s}</strong> {counts[s] || 0}
           </div>
         ))}
+<<<<<<< HEAD
         <button className="btn-secondary" onClick={refresh}>
           Refresh
         </button>
+=======
+        <button className="btn-secondary" onClick={refresh}>Refresh</button>
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
       </div>
       <table className="leads-table">
         <thead>
@@ -96,6 +141,7 @@ export default function AdminDashboard({ version = 0 }) {
         </thead>
         <tbody>
           {leads.map((l) => (
+<<<<<<< HEAD
             <LeadRow
               key={l.id}
               lead={l}
@@ -104,6 +150,26 @@ export default function AdminDashboard({ version = 0 }) {
               handleSchedule={handleSchedule}
               handleDelete={handleDelete}
             />
+=======
+            <tr key={l.id}>
+              <td>{l.fullName}</td>
+              <td>{l.email}</td>
+              <td>{l.stage}</td>
+              <td>{l.scheduledAt ? new Date(l.scheduledAt).toLocaleString() : "-"}</td>
+              <td>{sessionSummary(l.id)}</td>
+              <td>
+                {l.stage === "New" && (
+                  <button className="btn-secondary" onClick={() => handleReady(l.id)}>Mark Ready</button>
+                )}
+                {l.stage === "Ready" && (
+                  <button className="btn-primary" onClick={() => handlePay(l.id)}>Proceed to Payment</button>
+                )}
+                {l.stage === "Paid" && (
+                  <ScheduleInput onSchedule={(dt) => handleSchedule(l.id, dt)} />
+                )}
+              </td>
+            </tr>
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
           ))}
         </tbody>
       </table>
@@ -111,6 +177,7 @@ export default function AdminDashboard({ version = 0 }) {
   );
 }
 
+<<<<<<< HEAD
 function LeadRow({
   lead,
   handleReady,
@@ -165,6 +232,10 @@ function LeadRow({
 
 function ScheduleInput({ onSchedule }) {
   const [value, setValue] = useState('');
+=======
+function ScheduleInput({ onSchedule }) {
+  const [value, setValue] = useState("");
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
   return (
     <div className="schedule-input">
       <input
@@ -172,12 +243,16 @@ function ScheduleInput({ onSchedule }) {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
+<<<<<<< HEAD
       <button
         className="btn-primary"
         onClick={() => value && onSchedule(new Date(value).toISOString())}
       >
         Schedule
       </button>
+=======
+      <button className="btn-primary" onClick={() => value && onSchedule(new Date(value).toISOString())}>Schedule</button>
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
     </div>
   );
 }

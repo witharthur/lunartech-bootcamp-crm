@@ -1,13 +1,22 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import { getLeadById } from '../api/mockBackend';
 import ChatWidget from '../components/ChatWidget';
 import LeadForm from '../components/LeadForm';
 import { getCurrentLeadId } from '../lib/session';
+=======
+import React, { useEffect, useState } from "react";
+import LeadForm from "../components/LeadForm";
+import ChatWidget from "../components/ChatWidget";
+import { getLeadById } from "../api/mockBackend";
+import { getCurrentLeadId } from "../lib/session";
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
 
 export default function ApplicantPage({ navigate }) {
   const [lead, setLead] = useState(null);
 
   useEffect(() => {
+<<<<<<< HEAD
     let force = false;
     try {
       const params =
@@ -53,6 +62,17 @@ export default function ApplicantPage({ navigate }) {
   function goSchedule() {
     navigate('/schedule');
   }
+=======
+    const id = getCurrentLeadId();
+    if (id) {
+      const l = getLeadById(id);
+      if (l) setLead(l);
+    }
+  }, []);
+
+  function goPayment() { navigate("/payment"); }
+  function goSchedule() { navigate("/schedule"); }
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
 
   return (
     <div className="page-wrap">
@@ -67,6 +87,7 @@ export default function ApplicantPage({ navigate }) {
             <div>
               <div className="status-bar">
                 <span className="status-pill">Stage: {lead.stage}</span>
+<<<<<<< HEAD
                 {lead.stage === 'Ready' && (
                   <button className="btn-primary" onClick={goPayment}>
                     Proceed to Payment 💳
@@ -81,6 +102,16 @@ export default function ApplicantPage({ navigate }) {
                   <span className="status-pill">
                     Onboarding: {new Date(lead.scheduledAt).toLocaleString()}
                   </span>
+=======
+                {lead.stage === "Ready" && (
+                  <button className="btn-primary" onClick={goPayment}>Proceed to Payment 💳</button>
+                )}
+                {lead.stage === "Paid" && (
+                  <button className="btn-primary" onClick={goSchedule}>Schedule Onboarding 📅</button>
+                )}
+                {lead.stage === "Scheduled" && lead.scheduledAt && (
+                  <span className="status-pill">Onboarding: {new Date(lead.scheduledAt).toLocaleString()}</span>
+>>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
                 )}
               </div>
               <h3 className="section-title">Chat with Admissions</h3>
