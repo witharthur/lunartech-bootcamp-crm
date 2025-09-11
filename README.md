@@ -16,7 +16,7 @@ PostgreSQL
 OpenAI API key
 
 # Clone and install
-git clone https://github.com/witharthur/lunartech-assignment
+git clone https://github.com/witharthur/lunartech-bootcamp-crm
 cd lunartech
 npm run install:all
 
@@ -72,6 +72,4 @@ Database: PostgreSQL
 AI: OpenAI API (RAG)
 Payment: Stripe (test mode)
 =======
-# lunartech
-This repository initialized.
->>>>>>> 9673f251c9d61005c16ab3bbebb483ba648375ff
+
