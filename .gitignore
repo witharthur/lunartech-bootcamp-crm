@@ -1,6 +1,5 @@
-# Ignore environment files
 .env
-
-# Optional: common ignores for Node.js
 node_modules/
 dist/
+.shet/cache/
+.shet/build/    
