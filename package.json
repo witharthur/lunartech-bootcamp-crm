@@ -1,0 +1,25 @@
+{
+  "name": "lunartech-crm-proto",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node server/dev.js",
+    "start": "node server/dev.js",
+    "build": "echo \"No build step; dev server bundles on the fly with esbuild.\""
+  },
+  "dependencies": {
+    "@prisma/client": "^6.16.0",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "esbuild": "^0.21.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "yaml": "^2.4.2"
+  },
+  "devDependencies": {
+    "prisma": "^6.16.0"
+  }
+}

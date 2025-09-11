@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      String   @default("applicant")
+  hash      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Lead {
+  id         String   @id @default(cuid())
+  fullName   String
+  email      String
+  phone      String?
+  country    String?
+  why        String?
+  stage      String   @default("New")
+  scheduledAt DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  interactions Interaction[]
+  payments    Payment[]
+}
+
+model Interaction {
+  id        String   @id @default(cuid())
+  lead      Lead     @relation(fields: [leadId], references: [id])
+  leadId    String
+  role      String
+  message   String
+  confidence Float?
+  escalated Boolean @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Payment {
+  id         String   @id @default(cuid())
+  lead       Lead     @relation(fields: [leadId], references: [id])
+  leadId     String
+  stripeId   String?
+  amount     Int
+  currency   String @default("usd")
+  status     String
+  createdAt  DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  action    String
+  tableName String
+  recordId  String?
+  payload   Json?
+  ip        String?
+  createdAt DateTime @default(now())
+}
+
+model Consent {
+  id        String   @id @default(cuid())
+  leadId    String?
+  email     String?
+  accepted  Boolean
+  at        DateTime @default(now())
+}
+
+model Embedding {
+  id        String   @id @default(cuid())
+  faqIndex  Int
+  vector    Bytes
+  createdAt DateTime @default(now())
+}

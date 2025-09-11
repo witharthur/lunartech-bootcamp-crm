@@ -1,0 +1,40 @@
+- question: What is the tuition for the AI Engineering Bootcamp?
+  answer: The tuition is $4,000 for the program. Payment plans and employer reimbursement may be available.
+- question: Do I need prior coding experience?
+  answer: Basic Python familiarity is recommended, but we provide preparatory materials. Motivated beginners can succeed.
+- question: What topics are covered?
+  answer: We focus on LLM workflows, retrieval-augmented generation, prompt engineering, agents, evaluation, and production-minded MLOps.
+- question: Is there a job guarantee?
+  answer: We do not offer a job guarantee. We provide career support, hiring partner intros, and portfolio guidance.
+- question: How long is the bootcamp?
+  answer: The core program runs 8–10 weeks with live sessions, async projects, and optional extensions for capstones.
+- question: What is the weekly time commitment?
+  answer: Expect 8–12 hours per week. Advanced tracks may require additional time.
+- question: Is the program remote?
+  answer: Yes, it is fully remote with global cohorts. All sessions are recorded.
+- question: Do you have financing options?
+  answer: Yes. We support pay-in-full, monthly installments, and employer-sponsored learning where available.
+- question: Can I get a refund?
+  answer: Refunds are evaluated on a case-by-case basis prior to the second week. After that point, tuition is non-refundable.
+- question: When do cohorts start?
+  answer: We open new cohorts regularly. Ask in chat for the next start date or check your confirmation email.
+- question: What are the prerequisites?
+  answer: Comfort with Python, basic data handling, and curiosity about AI systems. We share prep resources before the cohort.
+- question: How does scheduling work after payment?
+  answer: Once you pay, you can schedule onboarding via our embedded Cal.com link. You’ll receive calendar invites automatically.
+- question: How can I get help or contact admissions?
+  answer: Reply in the chat or email admissions@lunartech.example.com. For urgent matters, indicate 'urgent' and we will prioritize follow-up.
+- question: Are there discounts for students or veterans?
+  answer: We occasionally offer scholarships and discounts. Ask admissions in chat for current eligibility and application steps.
+- question: What does the onboarding call cover?
+  answer: The onboarding call reviews the schedule, tools, learning objectives, and sets expectations for the first week. You'll receive setup instructions beforehand.
+- question: Can I switch cohorts after enrollment?
+  answer: In most cases yes, subject to availability. Contact admissions to request a cohort transfer as early as possible.
+- question: What payment methods are accepted?
+  answer: We accept major credit cards via Stripe. For invoices or employer billing, contact admissions for alternative payment arrangements.
+- question: What happens if I miss a live session?
+  answer: Sessions are recorded; you can catch up asynchronously. Active participation is recommended to get the most from projects and feedback.
+- question: How are projects graded or reviewed?
+  answer: Mentors provide rubric-based code and project reviews. Feedback cycles occur at project milestones.
+- question: Is prior machine learning experience required?
+  answer: Prior ML experience is helpful but not strictly required. The course focuses on practical workflows and provides optional readings to get up to speed.
