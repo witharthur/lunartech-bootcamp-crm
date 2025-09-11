@@ -27,6 +27,8 @@ Payment: Stripe (test mode)
 Scheduling: Calendly integration
 
 System Components
+
+
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   Frontend      │    │   Backend API   │    │   Database      │
 │   - Lead Form   │◄──►│   - Lead CRUD   │◄──►│   - Leads       │
@@ -41,6 +43,8 @@ System Components
                     │  - Stripe       │
                     │  - Calendly     │
                     └─────────────────┘
+
+
 📋 Prerequisites
 
 Node.js (v16+ recommended)
@@ -51,7 +55,7 @@ Stripe account (test mode)
 
 🛠️ Installation & Setup
 1. Clone the Repository
-bashgit clone https://github.com/witharthur/lunartech-crm
+bashgit clone https://github.com/witharthur/lunartech-bootcamp-crm
 cd ai-bootcamp-crm
 2. Install Dependencies
 bash# Install backend dependencies
