@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 AI-Powered Bootcamp Applicant CRM
 Full-stack CRM managing bootcamp applications with AI-powered Q&A and automated workflows.
 Features
@@ -17,7 +16,7 @@ PostgreSQL
 OpenAI API key
 
 # Clone and install
-git clone https://github.com/witharthur/lunartech-assignment
+git clone https://github.com/witharthur/lunartech-bootcamp-crm
 cd lunartech
 npm run install:all
 
