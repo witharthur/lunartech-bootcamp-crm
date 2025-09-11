@@ -16,7 +16,7 @@ PostgreSQL
 OpenAI API key
 
 # Clone and install
-git clone https://github.com/witharthur/lunartech-bootcamp-crm
+git clone https://github.com/witharthur/lunartech-assignment
 cd lunartech
 npm run install:all
 
