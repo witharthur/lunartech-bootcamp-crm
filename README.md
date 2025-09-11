@@ -18,7 +18,6 @@ Analytics Dashboard: Funnel metrics and lead progression tracking
 
 🏗️ Architecture
 Tech Stack
-
 Frontend: React.js with Tailwind CSS
 Backend: Node.js with Express
 Database: PostgreSQL / SQLite
@@ -26,27 +25,7 @@ AI/ML: OpenAI API for RAG implementation
 Payment: Stripe (test mode)
 Scheduling: Calendly integration
 
-System Components
-
-
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Frontend      │    │   Backend API   │    │   Database      │
-│   - Lead Form   │◄──►│   - Lead CRUD   │◄──►│   - Leads       │
-│   - FAQ Chat    │    │   - FAQ Agent   │    │   - Interactions│
-│   - Admin Panel │    │   - Pipeline    │    │   - Sessions    │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                              │
-                              ▼
-                    ┌─────────────────┐
-                    │  External APIs  │
-                    │  - OpenAI       │
-                    │  - Stripe       │
-                    │  - Calendly     │
-                    └─────────────────┘
-
-
 📋 Prerequisites
-
 Node.js (v16+ recommended)
 npm or yarn
 PostgreSQL (or SQLite for development)
